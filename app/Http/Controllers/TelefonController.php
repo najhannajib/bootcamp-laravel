@@ -15,6 +15,10 @@ class TelefonController extends Controller
     public function index()
     {
         //
+        $telefons = Telefon::all();
+        return view('telefons.index',[
+            'telefons'=>$telefons
+        ]);
     }
 
     /**
@@ -36,6 +40,17 @@ class TelefonController extends Controller
     public function store(Request $request)
     {
         //
+        $telefon = new telefon;
+
+        $telefon->nama = $request->nama;
+        $telefon->jenama = $request->jenama;
+        $telefon->no_model = $request->no_model;
+        $telefon->no_serial = $request->no_serial;
+        $telefon->harga = $request->harga;
+        $telefon->kedai_id = $request->kedai_id;
+
+        $telefon->save();
+        return redirect('/telefons/');
     }
 
     /**
@@ -47,6 +62,9 @@ class TelefonController extends Controller
     public function show(telefon $telefon)
     {
         //
+        return view('telefons.show',[
+            'telefon'=>$telefon
+        ]);
     }
 
     /**
@@ -70,6 +88,15 @@ class TelefonController extends Controller
     public function update(Request $request, telefon $telefon)
     {
         //
+        $telefon->nama = $request->nama;
+        $telefon->jenama = $request->jenama;
+        $telefon->no_model = $request->no_model;
+        $telefon->no_serial = $request->no_serial;
+        $telefon->harga = $request->harga;
+        $telefon->kedai_id = $request->kedai_id;
+
+        $telefon->save();
+        return redirect('/telefons/');
     }
 
     /**

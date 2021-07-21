@@ -15,6 +15,10 @@ class CreateKedaisTable extends Migration
     {
         Schema::create('kedais', function (Blueprint $table) {
             $table->id();
+            $table->string('nama', 30);
+            $table->string('alamat', 50);
+            $table->integer('poskod');
+            $table->string('negeri', 20);
             $table->timestamps();
         });
     }

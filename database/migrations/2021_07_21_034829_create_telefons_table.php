@@ -15,6 +15,12 @@ class CreateTelefonsTable extends Migration
     {
         Schema::create('telefons', function (Blueprint $table) {
             $table->id();
+            $table->string('nama',30);
+            $table->string('jenama',30);
+            $table->string('no_model',30);
+            $table->string('no_serial',30);
+            $table->integer('harga');
+            $table->foreignId('kedai_id');
             $table->timestamps();
         });
     }

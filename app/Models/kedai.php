@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class kedai extends Model
 {
     use HasFactory;
+
+    public function telefons()
+    {
+        return $this->hasMany(Telefon::class);
+    }
 }
