@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\telefon;
 use Illuminate\Http\Request;
 
+use App\Mail\TelefonBaru;
+use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Support\Facades\Http;
+
 class TelefonController extends Controller
 {
     /**
@@ -16,8 +21,13 @@ class TelefonController extends Controller
     {
         //
         $telefons = Telefon::all();
+
+        $response = Http::get('https://swapi.dev/api/planets');
+        $response->json();
+
         return view('telefons.index',[
-            'telefons'=>$telefons
+            'telefons'=>$telefons,
+            'starwars'=>$response['results']
         ]);
     }
 
@@ -50,6 +60,8 @@ class TelefonController extends Controller
         $telefon->kedai_id = $request->kedai_id;
 
         $telefon->save();
+        $recipient=["najhan.mnajib@gmail.com", "israasaifullah@gmail.com"];
+        Mail::to($recipient)->send(new TelefonBaru());
         return redirect('/telefons/');
     }
 
